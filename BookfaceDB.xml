@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DB xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		  xsi:noNamespaceSchemaLocation="file:///D:/Assignment/CS/DB/Project/Project3/Social%20Network/Bookface.xsd">
+	<Users>
+		<User UserID="1">
+			<FirstName>Alice</FirstName>
+			<LastName>Wood</LastName>
+			<Sex>Female</Sex>
+			<Email>AliceWood@gmail.com</Email>
+			<DoB>
+				<Date>1</Date>
+				<Month>1</Month>
+				<Year>2001</Year>
+			</DoB>
+			<Address>
+				<StreetName>Health Sciences Drive</StreetName>
+				<StreetNumber>700</StreetNumber>
+				<City>Stony Brook</City>
+				<State>NY</State>
+				<ZipCode>11790</ZipCode>
+			</Address>
+			<Telephone>1234567890</Telephone>
+		</User>
+		<User UserID="2">
+			<FirstName>Ben</FirstName>
+			<LastName>Sharp</LastName>
+			<Sex>Male</Sex>
+			<Email>BenSharp@gmail.com</Email>
+			<DoB>
+				<Date>4</Date>
+				<Month>3</Month>
+				<Year>2003</Year>
+			</DoB>
+			<Address>
+				<StreetName>Health Sciences Drive</StreetName>
+				<StreetNumber>700</StreetNumber>
+				<City>Stony Brook</City>
+				<State>NY</State>
+				<ZipCode>11790</ZipCode>
+			</Address>
+			<Telephone>1234567890</Telephone>
+		</User>
+		<User UserID="3">
+			<FirstName>Charlotte</FirstName>
+			<LastName>Hill</LastName>
+			<Sex>Female</Sex>
+			<Email>CharlotteHill@gmail.com</Email>
+			<DoB>
+				<Date>5</Date>
+				<Month>8</Month>
+				<Year>2001</Year>
+			</DoB>
+			<Address>
+				<StreetName>Health Sciences Drive</StreetName>
+				<StreetNumber>700</StreetNumber>
+				<City>Stony Brook</City>
+				<State>NY</State>
+				<ZipCode>11790</ZipCode>
+			</Address>
+			<Telephone>1234567890</Telephone>
+		</User>
+		<User UserID="4">
+			<FirstName>Dan</FirstName>
+			<LastName>Miller</LastName>
+			<Sex>Male</Sex>
+			<Email>DanMiller@gmail.com</Email>
+			<DoB>
+				<Date>11</Date>
+				<Month>10</Month>
+				<Year>2001</Year>
+			</DoB>
+			<Address>
+				<StreetName>Health Sciences Drive</StreetName>
+				<StreetNumber>700</StreetNumber>
+				<City>Stony Brook</City>
+				<State>NY</State>
+				<ZipCode>11790</ZipCode>
+			</Address>
+			<Telephone>1234567890</Telephone>
+		</User>
+		<User UserID="5">
+			<FirstName>Eva</FirstName>
+			<LastName>Reed</LastName>
+			<Sex>Female</Sex>
+			<Email>EvaReed@gmail.com</Email>
+			<DoB>
+				<Date>5</Date>
+				<Month>9</Month>
+				<Year>2002</Year>
+			</DoB>
+			<Address>
+				<StreetName>Health Sciences Drive</StreetName>
+				<StreetNumber>700</StreetNumber>
+				<City>Stony Brook</City>
+				<State>NY</State>
+				<ZipCode>11790</ZipCode>
+			</Address>
+			<Telephone>1234567890</Telephone>
+		</User>
+	</Users>
+	<Friends>
+		<Friend FriendID="1">
+			<OwnerID>1</OwnerID>
+			<UserID>2</UserID>
+		</Friend>
+		<Friend FriendID="2">
+			<OwnerID>1</OwnerID>
+			<UserID>3</UserID>
+		</Friend>
+		<Friend FriendID="3">
+			<OwnerID>1</OwnerID>
+			<UserID>4</UserID>
+		</Friend>
+		<Friend FriendID="4">
+			<OwnerID>1</OwnerID>
+			<UserID>5</UserID>
+		</Friend>
+		<Friend FriendID="5">
+			<OwnerID>2</OwnerID>
+			<UserID>1</UserID>
+		</Friend>
+		<Friend FriendID="6">
+			<OwnerID>2</OwnerID>
+			<UserID>3</UserID>
+		</Friend>
+		<Friend FriendID="7">
+			<OwnerID>3</OwnerID>
+			<UserID>1</UserID>
+		</Friend>
+		<Friend FriendID="8">
+			<OwnerID>3</OwnerID>
+			<UserID>2</UserID>
+		</Friend>
+		<Friend FriendID="9">
+			<OwnerID>3</OwnerID>
+			<UserID>4</UserID>
+		</Friend>
+		<Friend FriendID="10">
+			<OwnerID>4</OwnerID>
+			<UserID>1</UserID>
+		</Friend>
+		<Friend FriendID="11">
+			<OwnerID>4</OwnerID>
+			<UserID>3</UserID>
+		</Friend>
+		<Friend FriendID="12">
+			<OwnerID>4</OwnerID>
+			<UserID>5</UserID>
+		</Friend>
+		<Friend FriendID="13">
+			<OwnerID>5</OwnerID>
+			<UserID>1</UserID>
+		</Friend>
+		<Friend FriendID="14">
+			<OwnerID>5</OwnerID>
+			<UserID>4</UserID>
+		</Friend>
+	</Friends>
+	<Posts>
+		<Post PostID="1">
+			<OwnerID>1</OwnerID>
+			<Content>It is raining!</Content>
+			<DateTime>
+				<Date>22</Date>
+				<Month>4</Month>
+				<Year>2012</Year>
+			</DateTime>
+		</Post>
+	</Posts>
+	<PostLikes>
+		<PostLike PostLikeID="1">
+			<OwnerID>2</OwnerID>
+			<PostID>1</PostID>
+		</PostLike>
+	</PostLikes>
+	<Comments>
+		<Comment CommentID="1">
+			<OwnerID>2</OwnerID>
+			<Content>Let's take a shower!</Content>
+			<DateTime>
+				<Date>22</Date>
+				<Month>4</Month>
+				<Year>2012</Year>
+			</DateTime>
+			<PostID>1</PostID>
+		</Comment>
+	</Comments>
+	<CComments>
+		<CComment CCommentID="1">
+			<OwnerID>1</OwnerID>
+			<Content>Come on!</Content>
+			<DateTime>
+				<Date>22</Date>
+				<Month>4</Month>
+				<Year>2012</Year>
+			</DateTime>
+			<CommentID>1</CommentID>
+		</CComment>
+	</CComments>
+	<Messages>
+		<Message MessageID="1">
+			<Subject>Summer Break</Subject>
+			<Content>What's your plan?</Content>
+			<DateTime>
+				<Date>22</Date>
+				<Month>4</Month>
+				<Year>2012</Year>
+			</DateTime>
+			<SenderID>1</SenderID>
+		</Message>
+	</Messages>
+	<MessageReceivers>
+		<MessageReceiver MessageReceiverID="1">
+			<ReceiverID>2</ReceiverID>
+			<MessageID>1</MessageID>
+		</MessageReceiver>
+		<MessageReceiver MessageReceiverID="2">
+			<ReceiverID>3</ReceiverID>
+			<MessageID>1</MessageID>
+		</MessageReceiver>
+		<MessageReceiver MessageReceiverID="3">
+			<ReceiverID>4</ReceiverID>
+			<MessageID>1</MessageID>
+		</MessageReceiver>
+		<MessageReceiver MessageReceiverID="4">
+			<ReceiverID>5</ReceiverID>
+			<MessageID>1</MessageID>
+		</MessageReceiver>
+	</MessageReceivers>
+	<MComments>
+		<MComment MCommentID="1">
+			<OwnerID>2</OwnerID>
+			<Content>Sleeping</Content>
+			<DateTime>
+				<Date>22</Date>
+				<Month>4</Month>
+				<Year>2012</Year>
+			</DateTime>
+			<MessageID>1</MessageID>
+		</MComment>
+		<MComment MCommentID="2">
+			<OwnerID>3</OwnerID>
+			<Content>Eating</Content>
+			<DateTime>
+				<Date>22</Date>
+				<Month>4</Month>
+				<Year>2012</Year>
+			</DateTime>
+			<MessageID>1</MessageID>
+		</MComment>
+		<MComment MCommentID="3">
+			<OwnerID>4</OwnerID>
+			<Content>Gaming</Content>
+			<DateTime>
+				<Date>22</Date>
+				<Month>4</Month>
+				<Year>2012</Year>
+			</DateTime>
+			<MessageID>1</MessageID>
+		</MComment>
+	</MComments>
+	<Advertisements>
+		<Advertisement AdvertisementID="1">
+			<Type>Book</Type>
+			<DateTime>
+				<Date>22</Date>
+				<Month>4</Month>
+				<Year>2012</Year>
+			</DateTime>
+			<Company>Spring</Company>
+			<ItemName>Jane Eyre</ItemName>
+			<UnitPrice>39.10</UnitPrice>
+			<NumberofAvailableUnits>10</NumberofAvailableUnits>
+		</Advertisement>
+	</Advertisements>
+	<Transactions>
+		<Transaction TransactionID="1">
+			<OwnerID>1</OwnerID>
+			<DateTime>
+				<Date>22</Date>
+				<Month>4</Month>
+				<Year>2012</Year>
+			</DateTime>
+			<AdvertisementID>1</AdvertisementID>
+			<NumberofUnits>2</NumberofUnits>
+		</Transaction>
+	</Transactions>
+</DB>

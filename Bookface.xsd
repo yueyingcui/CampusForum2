@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (x64) (http://www.altova.com) by Yueying Cui (Stony Brook University) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="User">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="FirstName" type="xs:string"/>
+				<xs:element name="LastName" type="xs:string"/>
+				<xs:element name="Sex" type="sexType"/>
+				<xs:element name="Email" type="xs:string"/>
+				<xs:element name="DoB" type="dateTimeType"/>
+				<xs:element name="Address" type="addressType"/>
+				<xs:element name="Telephone" type="telephoneType"/>
+			</xs:sequence>
+			<xs:attribute name="UserID" type="xs:integer"/>
+		</xs:complexType>
+		<xs:key name="UserPK">
+			<xs:selector xpath="DB/Users/User"/>
+			<xs:field xpath="@UserID"/>
+		</xs:key>
+	</xs:element>
+	<xs:element name="Friend">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="OwnerID" type="xs:integer"/>
+				<xs:element name="UserID" type="xs:integer"/>
+			</xs:sequence>
+			<xs:attribute name="FriendID" type="xs:integer"/>
+		</xs:complexType>
+		<xs:key name="FriendPK">
+			<xs:selector xpath="DB/Friends/Friend"/>
+			<xs:field xpath="@FriendID"/>
+		</xs:key>
+		<xs:keyref name="Friend_OwnerFK" refer="UserPK">
+			<xs:selector xpath="DB/Friends/Friend"/>
+			<xs:field xpath="@OwnerID"/>
+		</xs:keyref>
+		<xs:keyref name="Friend_UserFK" refer="UserPK">
+			<xs:selector xpath="DB/Friends/Friend"/>
+			<xs:field xpath="@UserID"/>
+		</xs:keyref>
+	</xs:element>
+	<xs:element name="Post">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="OwnerID" type="xs:integer"/>
+				<xs:element name="Content" type="xs:string"/>
+				<xs:element name="DateTime" type="dateTimeType"/>
+			</xs:sequence>
+			<xs:attribute name="PostID" type="xs:integer"/>
+		</xs:complexType>
+		<xs:key name="PostPK">
+			<xs:selector xpath="DB/Posts/Post"/>
+			<xs:field xpath="@PostID"/>
+		</xs:key>
+		<xs:keyref name="Post_OwnerFK" refer="UserPK">
+			<xs:selector xpath="DB/Posts/Post"/>
+			<xs:field xpath="@OwnerID"/>
+		</xs:keyref>
+	</xs:element>
+	<xs:element name="PostLike">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="OwnerID" type="xs:integer"/>
+				<xs:element name="PostID" type="xs:integer"/>
+			</xs:sequence>
+			<xs:attribute name="PostLikeID" type="xs:integer"/>
+		</xs:complexType>
+		<xs:key name="PostLikePK">
+			<xs:selector xpath="DB/PostLikes/PostLike"/>
+			<xs:field xpath="@PostLikeID"/>
+		</xs:key>
+		<xs:keyref name="PostLike_OwnerFK" refer="UserPK">
+			<xs:selector xpath="DB/PostLiles/PostLike"/>
+			<xs:field xpath="@OwnerID"/>
+		</xs:keyref>
+		<xs:keyref name="PostLike_PostFK" refer="PostPK">
+			<xs:selector xpath="DB/PostLikes/PostLike"/>
+			<xs:field xpath="@PostID"/>
+		</xs:keyref>
+	</xs:element>
+	<xs:element name="Comment">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="OwnerID" type="xs:integer"/>
+				<xs:element name="Content" type="xs:string"/>
+				<xs:element name="DateTime" type="dateTimeType"/>
+				<xs:element name="PostID" type="xs:integer"/>
+			</xs:sequence>
+			<xs:attribute name="CommentID" type="xs:integer"/>
+		</xs:complexType>
+		<xs:key name="CommentPK">
+			<xs:selector xpath="DB/Comments/Comment"/>
+			<xs:field xpath="@CommentID"/>
+		</xs:key>
+		<xs:keyref name="Comment_OwnerFK" refer="UserPK">
+			<xs:selector xpath="DB/Comments/Comment"/>
+			<xs:field xpath="@OwnerID"/>
+		</xs:keyref>
+		<xs:keyref name="Comment_PostFK" refer="PostPK">
+			<xs:selector xpath="DB/Comments/Comment"/>
+			<xs:field xpath="@PostID"/>
+		</xs:keyref>
+	</xs:element>
+	<xs:element name="CComment">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="OwnerID" type="xs:integer"/>
+				<xs:element name="Content" type="xs:string"/>
+				<xs:element name="DateTime" type="dateTimeType"/>
+				<xs:element name="CommentID" type="xs:integer"/>
+			</xs:sequence>
+			<xs:attribute name="CCommentID" type="xs:integer"/>
+		</xs:complexType>
+		<xs:key name="CCommentPK">
+			<xs:selector xpath="DB/CComments/CComment"/>
+			<xs:field xpath="@CCommentID"/>
+		</xs:key>
+		<xs:keyref name="CComment_OwnerFK" refer="UserPK">
+			<xs:selector xpath="DB/CComments/CComment"/>
+			<xs:field xpath="@OwnerID"/>
+		</xs:keyref>
+		<xs:keyref name="CComment_CommentFK" refer="CommentPK">
+			<xs:selector xpath="DB/CComments/CComment"/>
+			<xs:field xpath="@CommentID"/>
+		</xs:keyref>
+	</xs:element>
+	<xs:element name="Message">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Subject" type="xs:string"/>
+				<xs:element name="Content" type="xs:string"/>
+				<xs:element name="DateTime" type="dateTimeType"/>
+				<xs:element name="SenderID" type="xs:integer"/>
+			</xs:sequence>
+			<xs:attribute name="MessageID" type="xs:integer"/>
+		</xs:complexType>
+		<xs:key name="MessagePK">
+			<xs:selector xpath="DB/Messages/Message"/>
+			<xs:field xpath="@MessageID"/>
+		</xs:key>
+		<xs:keyref name="Message_SenderFK" refer="UserPK">
+			<xs:selector xpath="DB/Messages/Message"/>
+			<xs:field xpath="@SenderID"/>
+		</xs:keyref>
+	</xs:element>
+	<xs:element name="MessageReceiver">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ReceiverID" type="xs:integer"/>
+				<xs:element name="MessageID" type="xs:integer"/>
+			</xs:sequence>
+			<xs:attribute name="MessageReceiverID" type="xs:integer"/>
+		</xs:complexType>
+		<xs:key name="MessageReceiverPK">
+			<xs:selector xpath="DB/MessageReceivers/MessageReceiver"/>
+			<xs:field xpath="@MessageReceiverID"/>
+		</xs:key>
+		<xs:keyref name="MessageReceiver_ReceiverFK" refer="UserPK">
+			<xs:selector xpath="DB/MessageReceivers/MessageReceiver"/>
+			<xs:field xpath="@ReceiverID"/>
+		</xs:keyref>
+		<xs:keyref name="MessageReceiver_MessageFK" refer="MessagePK">
+			<xs:selector xpath="DB/MessageReceivers/MessageReceiver"/>
+			<xs:field xpath="@MessageID"/>
+		</xs:keyref>
+	</xs:element>
+	<xs:element name="MComment">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="OwnerID" type="xs:integer"/>
+				<xs:element name="Content" type="xs:string"/>
+				<xs:element name="DateTime" type="dateTimeType"/>
+				<xs:element name="MessageID" type="xs:integer"/>
+			</xs:sequence>
+			<xs:attribute name="MCommentID" type="xs:integer"/>
+		</xs:complexType>
+		<xs:key name="MCommentPK">
+			<xs:selector xpath="DB/MComments/MComment"/>
+			<xs:field xpath="@MCommentID"/>
+		</xs:key>
+		<xs:keyref name="MComment_OwnerFK" refer="UserPK">
+			<xs:selector xpath="DB/MComments/MComment"/>
+			<xs:field xpath="@OwnerID"/>
+		</xs:keyref>
+		<xs:keyref name="MComment_MessageFK" refer="MessagePK">
+			<xs:selector xpath="DB/MComments/MComment"/>
+			<xs:field xpath="@MessageID"/>
+		</xs:keyref>
+	</xs:element>
+	<xs:element name="Advertisement">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Type" type="xs:string"/>
+				<xs:element name="DateTime" type="dateTimeType"/>
+				<xs:element name="Company" type="xs:string"/>
+				<xs:element name="ItemName" type="xs:string"/>
+				<xs:element name="UnitPrice" type="xs:double"/>
+				<xs:element name="NumberofAvailableUnits" type="xs:integer"/>
+			</xs:sequence>
+			<xs:attribute name="AdvertisementID" type="xs:integer"/>
+		</xs:complexType>
+		<xs:key name="AdvertisementPK">
+			<xs:selector xpath="DB/Advertisements/Advertisement"/>
+			<xs:field xpath="@AdvertisementID"/>
+		</xs:key>
+	</xs:element>
+	<xs:element name="Transaction">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="OwnerID" type="xs:integer"/>
+				<xs:element name="DateTime" type="dateTimeType"/>
+				<xs:element name="AdvertisementID" type="xs:integer"/>
+				<xs:element name="NumberofUnits" type="xs:integer"/>
+			</xs:sequence>
+			<xs:attribute name="TransactionID" type="xs:integer"/>
+		</xs:complexType>
+		<xs:key name="TransactionPK">
+			<xs:selector xpath="DB/Transactions/Transaction"/>
+			<xs:field xpath="@TransactionID"/>
+		</xs:key>
+		<xs:keyref name="Transaction_OwnerFK" refer="UserPK">
+			<xs:selector xpath="DB/Transactions/Transaction"/>
+			<xs:field xpath="@OwnerID"/>
+		</xs:keyref>
+		<xs:keyref name="Transaction_AdvertisementFK" refer="AdvertisementPK">
+			<xs:selector xpath="DB/Transactions/Transaction"/>
+			<xs:field xpath="@AdvertisementID"/>
+		</xs:keyref>
+	</xs:element>
+	<xs:complexType name="dateTimeType">
+		<xs:sequence>
+			<xs:element name="Date" type="dateType"/>
+			<xs:element name="Month" type="monthType"/>
+			<xs:element name="Year" type="yearType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="dateType">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="31"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="monthType">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="yearType">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1900"/>
+			<xs:maxInclusive value="9999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="sexType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Male"/>
+			<xs:enumeration value="Female"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="addressType">
+		<xs:sequence>
+			<xs:element name="StreetName" type="xs:string"/>
+			<xs:element name="StreetNumber" type="xs:integer"/>
+			<xs:element name="City" type="xs:string"/>
+			<xs:element name="State" type="xs:string"/>
+			<xs:element name="ZipCode" type="xs:integer"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="telephoneType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9/ -]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="Users">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="User" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Friends">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Friend" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Posts">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Post" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PostLikes">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PostLike" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Comments">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Comment" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CComments">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CComment" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Messages">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Message" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MessageReceivers">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MessageReceiver" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MComments">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MComment" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Advertisements">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Advertisement" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Transactions">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Transaction" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DB">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Users"/>
+				<xs:element ref="Friends"/>
+				<xs:element ref="Posts"/>
+				<xs:element ref="PostLikes"/>
+				<xs:element ref="Comments"/>
+				<xs:element ref="CComments"/>
+				<xs:element ref="Messages"/>
+				<xs:element ref="MessageReceivers"/>
+				<xs:element ref="MComments"/>
+				<xs:element ref="Advertisements"/>
+				<xs:element ref="Transactions"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
